@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <!-- site title -->
+    <header class="text-center my-4">
+        <h1 class="display-3">TodoApp</h1>
+    </header>
+    <!-- card  -->
+    <div class="card" id="todoApp">
+
+        <div class="card-header d-flex flex-row">
+            <button type="button" class="btn btn-primary mr-3" @click="onClickAllDone()">All done</button>
+
+            <div class="form-group mb-0 flex-grow">
+                <input type="text" class="form-control" placeholder="Add todo here"
+                @keyup.enter="onEnterAddTodo()" v-model="newTodoName">
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item d-flex flex-row align-items-center" v-for="(todo, index) in filteredTodoCollection">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" :id="'checkbox' + index" v-model="todo.completed">
+                        <label class="custom-control-label" :for="'checkbox' + index"></label>
+                    </div>
+
+                    <span :class="{ 'line-through': todo.completed }" 
+                    v-show="!todo.editing"
+                    @dblclick="onDblClickTodoName(todo)">{{ todo.name }}</span>
+
+                    <div class="form-group mb-0 flex-grow" v-show="todo.editing">
+                        <input type="text" class="form-control" v-model="editingTodoName"
+                        @keyup.enter="onEnterTodoName(todo)"
+                        @keyup.esc="onCancelTodoName(todo)"
+                        @blur="onCancelTodoName(todo)">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-between">
+            <!-- counter -->
+            <span>{{ counter }} {{ counter > 1 ? 'items' : 'item'}} left</span>
+            <!-- filters -->
+            <div>
+                <button type="button" class="btn btn-sm" @click="setFilter('all')" :class="getFilterButtonClass('all')">
+                    All
+                </button>
+                <button type="button" class="btn btn-sm" @click="setFilter('active')" :class="getFilterButtonClass('active')">
+                    Active
+                </button>
+                <button type="button" class="btn btn-sm" @click="setFilter('completed')" :class="getFilterButtonClass('completed')">
+                    Completed
+                </button>
+            </div>
+            <!-- remove completed -->
+            <div>
+                <button type="button" class="btn btn-sm btn-link" @click="onClickRemoveCompleted()">Remove Completed</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="script.js"></script>
+</body>
+</html>

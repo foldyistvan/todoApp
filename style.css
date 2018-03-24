@@ -1,0 +1,11 @@
+.container {
+	max-width: 40rem;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+.line-through {
+	text-decoration: line-through;
+}
