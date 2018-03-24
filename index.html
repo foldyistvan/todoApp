@@ -28,9 +28,9 @@
         </div>
 
         <div class="card-body p-0">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush todo-list">
 
-                <li class="list-group-item d-flex flex-row align-items-center" v-for="(todo, index) in filteredTodoCollection">
+                <li class="list-group-item d-flex flex-row align-items-center todo-list-item" v-for="(todo, index) in filteredTodoCollection">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" :id="'checkbox' + index" v-model="todo.completed">
                         <label class="custom-control-label" :for="'checkbox' + index"></label>

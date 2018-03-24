@@ -59,7 +59,7 @@ var app = new Vue({
     getFilterButtonClass: function(filter) {
       return {
         'btn-outline-secondary': filter !== this.filter,
-        'btn-secondary': filter === this.filter,
+        'btn-secondary': filter === this.filter
       };
     },
 
