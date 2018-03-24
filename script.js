@@ -15,7 +15,7 @@ var app = new Vue({
       new Todo('todo2'),
       new Todo('todo3'),
       new Todo('todo4'),
-      new Todo('todo5'),
+      new Todo('todo5')
     ]
   },
   methods: {
@@ -67,7 +67,7 @@ var app = new Vue({
       this.todoCollection = this.todoCollection.filter(function(todo){
         return !todo.completed;
       })
-    },
+    }
   },
   computed: {
     counter: function () {
